@@ -1,0 +1,12 @@
+.AppHeader {
+  background-color: var(--primary-bg);
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+.AppHeader h1 {
+  font-size: 2rem;
+}
