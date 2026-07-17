@@ -1,4 +1,4 @@
-.AppHeader {
+.header {
   background-color: var(--primary-bg);
   min-height: 10vh;
   display: flex;
@@ -7,6 +7,9 @@
   color: var(--text-color);
 }
 
-.AppHeader h1 {
-  font-size: 2rem;
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.3rem, 6vw, 2rem);
+  line-height: 1.2;
+  text-align: center;
 }
