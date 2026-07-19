@@ -1,6 +1,9 @@
 import { useState } from "react";
 import type { CharacterResponse } from "../types/characterResponse";
 import SearchBar from "../components/SearchBar/SearchBar";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
+import CharacterList from "../components/CharacterList/CharacterList";
 
 export default function HomePage() {
   const [data, setData] = useState<CharacterResponse | null>(null);
@@ -9,6 +12,7 @@ export default function HomePage() {
 
   async function handleSearch(query: string) {
     try {
+      setData(null);
       setError(null);
       setIsLoading(true);
       const response = await fetch(
@@ -17,15 +21,23 @@ export default function HomePage() {
       if (!response.ok) {
         throw new Error("Failed to fetch characters.");
       }
-      const data: CharacterResponse = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error("Error searching characters:", error);
+      const responseData: CharacterResponse = await response.json();
+      setData(responseData);
+    } catch (err) {
+      console.error("Error searching characters:", err);
       setError("Failed to search characters");
     } finally {
       setIsLoading(false);
     }
   }
 
-  return <SearchBar onSearch={handleSearch} />;
+  return (
+    <>
+      <SearchBar onSearch={handleSearch} />
+      {data && <CharacterList characters={data.results} />}
+
+      {isLoading && <LoadingSpinner />}
+      {error && <ErrorMessage message={error} />}
+    </>
+  );
 }
