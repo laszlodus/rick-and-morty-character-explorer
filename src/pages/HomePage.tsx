@@ -4,24 +4,21 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import CharacterList from "../components/CharacterList/CharacterList";
+import Pagination from "../components/Pagination/Pagination";
+import searchCharacters from "../services/CharacterService";
 
 export default function HomePage() {
   const [data, setData] = useState<CharacterResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
   async function handleSearch(query: string) {
     try {
       setData(null);
       setError(null);
       setIsLoading(true);
-      const response = await fetch(
-        `https://rickandmortyapi.com/api/character/?name=${encodeURIComponent(query)}`,
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch characters.");
-      }
-      const responseData: CharacterResponse = await response.json();
+      const responseData = await searchCharacters(query, page);
       setData(responseData);
     } catch (err) {
       console.error("Error searching characters:", err);
@@ -31,10 +28,15 @@ export default function HomePage() {
     }
   }
 
+  function handlePageChange(newPage: number) {
+    setPage(newPage);
+  }
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
       {data && <CharacterList characters={data.results} />}
+      {data && <Pagination info={data.info} onPageChange={handlePageChange} />}
 
       {isLoading && <LoadingSpinner />}
       {error && <ErrorMessage message={error} />}

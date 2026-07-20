@@ -1,0 +1,22 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 18.75rem; /* 300px / 16 */
+  transition: transform 0.2s;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 60%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}

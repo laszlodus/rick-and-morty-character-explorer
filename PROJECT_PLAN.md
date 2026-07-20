@@ -5,12 +5,13 @@
 - [x] HomePage
 - [x] SearchBar
 - [x] Character types
+- [x] API service layer
 - [x] Fetch search results
 - [x] Loading state
 - [x] Error state
 - [x] CharacterList
 - [x] CharacterCard
-- [ ] Pagination
+- [x] Pagination
 - [ ] Character details page
 - [ ] Episodes page
 - [ ] Locations page

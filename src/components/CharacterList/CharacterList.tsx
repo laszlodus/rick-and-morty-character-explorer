@@ -1,5 +1,6 @@
 import type { Character } from "../../types/character";
 import CharacterCard from "../CharacterCard/CharacterCard";
+import styles from "./CharacterList.module.css";
 
 export default function CharacterList({
   characters,
@@ -7,7 +8,7 @@ export default function CharacterList({
   characters: Character[];
 }) {
   return (
-    <div>
+    <div className={styles.list}>
       {characters.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}
