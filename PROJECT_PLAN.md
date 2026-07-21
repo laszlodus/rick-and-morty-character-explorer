@@ -12,7 +12,7 @@
 - [x] CharacterList
 - [x] CharacterCard
 - [x] Pagination
-- [ ] Character details page
+- [x] Character details page
 - [ ] Episodes page
 - [ ] Locations page
 - [ ] Favorites
