@@ -1,6 +1,6 @@
 import styles from "./Pagination.module.css";
 import { getPageNumber } from "../../utils/getPageNumber";
-import type { PageInfo } from "../../types/pageInfo";
+import type { PageInfo } from "../../types/PageInfo";
 
 type PaginationProps = {
   info: PageInfo;

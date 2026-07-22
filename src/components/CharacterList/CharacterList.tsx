@@ -1,4 +1,4 @@
-import type { Character } from "../../types/character";
+import type { Character } from "../../types/Character";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import styles from "./CharacterList.module.css";
 

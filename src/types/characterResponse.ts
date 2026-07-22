@@ -1,5 +1,5 @@
-import type { PageInfo } from "./pageInfo";
-import type { Character } from "./character";
+import type { PageInfo } from "./PageInfo";
+import type { Character } from "./Character";
 
 export type CharacterResponse = {
   info: PageInfo;

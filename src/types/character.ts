@@ -1,4 +1,4 @@
-import type { LocationInfo } from "./locationInfo";
+import type { LocationInfo } from "./LocationInfo";
 
 export type Character = {
   id: number;

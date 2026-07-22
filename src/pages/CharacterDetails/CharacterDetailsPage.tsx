@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import type { Character } from "../../types/character";
-import getCharacterById from "../../services/CharactersApi";
+import type { Character } from "../../types/Character";
+import { getCharacterById } from "../../services/CharactersApi";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";

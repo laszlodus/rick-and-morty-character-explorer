@@ -1,33 +1,47 @@
 import { useState, useEffect } from "react";
-import type { CharacterResponse } from "../../types/characterResponse";
+import { useSearchParams } from "react-router-dom";
+import type { CharacterResponse } from "../../types/CharacterResponse";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import CharacterList from "../../components/CharacterList/CharacterList";
 import Pagination from "../../components/Pagination/Pagination";
-import searchCharacters from "../../services/CharacterService";
+import { searchCharacters } from "../../services/CharactersApi";
 
 export default function HomePage() {
   const [data, setData] = useState<CharacterResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlSearchQuery = searchParams.get("name") || "";
+  const urlPageNumber = Number(searchParams.get("page"));
+
+  let validatedPage = 1;
+
+  if (
+    !Number.isNaN(urlPageNumber) &&
+    urlPageNumber > 0 &&
+    Number.isInteger(urlPageNumber)
+  ) {
+    validatedPage = urlPageNumber;
+  }
 
   function handleSearch(query: string) {
-    setSearchQuery(query);
-    setPage(1);
+    setSearchParams({ name: query, page: "1" });
   }
 
   useEffect(() => {
-    if (!searchQuery) return;
+    if (!urlSearchQuery) return;
 
     async function fetchData() {
       try {
         setData(null);
         setError(null);
         setIsLoading(true);
-        const responseData = await searchCharacters(searchQuery, page);
+        const responseData = await searchCharacters(
+          urlSearchQuery,
+          validatedPage,
+        );
         setData(responseData);
       } catch (err) {
         console.error("Error searching characters:", err);
@@ -37,10 +51,10 @@ export default function HomePage() {
       }
     }
     fetchData();
-  }, [searchQuery, page]);
+  }, [urlSearchQuery, validatedPage]);
 
   function handlePageChange(newPage: number) {
-    setPage(newPage);
+    setSearchParams({ name: urlSearchQuery, page: String(newPage) });
   }
 
   return (

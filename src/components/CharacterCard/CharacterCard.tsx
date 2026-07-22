@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Character } from "../../types/character";
+import type { Character } from "../../types/Character";
 import styles from "./CharacterCard.module.css";
 
 export default function CharacterCard({ character }: { character: Character }) {
