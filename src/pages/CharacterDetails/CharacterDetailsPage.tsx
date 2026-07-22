@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import type { Character } from "../../types/Character";
 import { getCharacterById } from "../../services/CharactersApi";
 import { useEffect, useState } from "react";
@@ -14,6 +14,11 @@ export default function CharacterDetails() {
   const [character, setCharacter] = useState<Character | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  function handleBackToSearch() {
+    navigate(-1);
+  }
 
   useEffect(() => {
     if (isInvalidId) return;
@@ -52,7 +57,7 @@ export default function CharacterDetails() {
           <p>Appears in: {character.episode.length}</p>
         </div>
       )}
-      <Link to="/">Back to search</Link>
+      <button onClick={handleBackToSearch}>Back to Search</button>
     </>
   );
 }
