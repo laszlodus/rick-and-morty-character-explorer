@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import styles from "./CharacterDetails.module.css";
 import type { Character } from "../../types/Character";
 import { getCharacterById } from "../../services/CharactersApi";
 import { useEffect, useState } from "react";
@@ -46,18 +47,26 @@ export default function CharacterDetails() {
       {error && <ErrorMessage message={error} />}
       {isInvalidId && <ErrorMessage message="Invalid character ID." />}
       {!error && !isLoading && character && (
-        <div>
-          <h1>{character.name}</h1>
-          <img src={character.image} alt={character.name} />
-          <p>Status: {character.status}</p>
-          <p>Species: {character.species}</p>
-          <p>Gender: {character.gender}</p>
-          <p>Origin: {character.origin.name}</p>
-          <p>Location: {character.location.name}</p>
-          <p>Appears in: {character.episode.length}</p>
+        <div className={styles.characterDetails}>
+          <h1 className={styles.name}>{character.name}</h1>
+          <img
+            className={styles.image}
+            src={character.image}
+            alt={character.name}
+          />
+          <div className={styles.info}>
+            <p>Status: {character.status}</p>
+            <p>Species: {character.species}</p>
+            <p>Gender: {character.gender}</p>
+            <p>Origin: {character.origin.name}</p>
+            <p>Location: {character.location.name}</p>
+            <p>Appears in: {character.episode.length}</p>
+          </div>
+          <button className={styles.backButton} onClick={handleBackToSearch}>
+            Back to Search
+          </button>
         </div>
       )}
-      <button onClick={handleBackToSearch}>Back to Search</button>
     </>
   );
 }

@@ -49,7 +49,7 @@ export default function HomePage() {
         setData(responseData);
       } catch (err) {
         console.error("Error searching characters:", err);
-        setError("Failed to search characters");
+        setError("No characters found.");
       } finally {
         setIsLoading(false);
       }
