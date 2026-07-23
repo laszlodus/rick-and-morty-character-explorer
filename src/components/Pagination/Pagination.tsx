@@ -1,28 +1,21 @@
 import styles from "./Pagination.module.css";
-import { getPageNumber } from "../../utils/getPageNumber";
-import type { PageInfo } from "../../types/PageInfo";
 
 type PaginationProps = {
-  info: PageInfo;
+  currentPage: number;
+  totalPages: number;
   onPageChange: (newPage: number) => void;
 };
 
-export default function Pagination({ info, onPageChange }: PaginationProps) {
-  let currentPage: number;
-  if (info.next !== null) {
-    currentPage = getPageNumber(info.next) - 1;
-  } else if (info.prev !== null) {
-    currentPage = getPageNumber(info.prev) + 1;
-  } else {
-    currentPage = 1;
-  }
-  const totalPages = info.pages;
-
+export default function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) {
   return (
     <div className={styles.pagination}>
       <button
         className={styles.button}
-        disabled={info.prev === null}
+        disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
         Previous
@@ -34,7 +27,7 @@ export default function Pagination({ info, onPageChange }: PaginationProps) {
 
       <button
         className={styles.button}
-        disabled={info.next === null}
+        disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
         Next

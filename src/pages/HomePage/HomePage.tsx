@@ -30,6 +30,10 @@ export default function HomePage() {
     setSearchParams({ name: query, page: "1" });
   }
 
+  function handlePageChange(newPage: number) {
+    setSearchParams({ name: urlSearchQuery, page: String(newPage) });
+  }
+
   useEffect(() => {
     if (!urlSearchQuery) return;
 
@@ -53,15 +57,21 @@ export default function HomePage() {
     fetchData();
   }, [urlSearchQuery, validatedPage]);
 
-  function handlePageChange(newPage: number) {
-    setSearchParams({ name: urlSearchQuery, page: String(newPage) });
-  }
-
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar
+        onSearch={handleSearch}
+        key={urlSearchQuery}
+        urlSearchQuery={urlSearchQuery}
+      />
       {data && <CharacterList characters={data.results} />}
-      {data && <Pagination info={data.info} onPageChange={handlePageChange} />}
+      {data && (
+        <Pagination
+          currentPage={validatedPage}
+          totalPages={data.info.pages}
+          onPageChange={handlePageChange}
+        />
+      )}
 
       {isLoading && <LoadingSpinner />}
       {error && <ErrorMessage message={error} />}

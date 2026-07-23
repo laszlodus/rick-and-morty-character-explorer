@@ -3,10 +3,14 @@ import styles from "./SearchBar.module.css";
 
 type SearchBarProps = {
   onSearch: (query: string) => void;
+  urlSearchQuery: string;
 };
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function SearchBar({
+  onSearch,
+  urlSearchQuery,
+}: SearchBarProps) {
+  const [searchQuery, setSearchQuery] = useState(urlSearchQuery);
 
   function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
