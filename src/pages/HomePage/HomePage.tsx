@@ -7,6 +7,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import CharacterList from "../../components/CharacterList/CharacterList";
 import Pagination from "../../components/Pagination/Pagination";
 import { searchCharacters } from "../../services/CharactersApi";
+import getValidatedPage from "../../utils/getValidatedPage";
 
 export default function HomePage() {
   const [data, setData] = useState<CharacterResponse | null>(null);
@@ -14,17 +15,7 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const urlSearchQuery = searchParams.get("name") || "";
-  const urlPageNumber = Number(searchParams.get("page"));
-
-  let validatedPage = 1;
-
-  if (
-    !Number.isNaN(urlPageNumber) &&
-    urlPageNumber > 0 &&
-    Number.isInteger(urlPageNumber)
-  ) {
-    validatedPage = urlPageNumber;
-  }
+  const validatedPage = getValidatedPage(searchParams.get("page"));
 
   function handleSearch(query: string) {
     setSearchParams({ name: query, page: "1" });
