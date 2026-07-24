@@ -13,7 +13,7 @@
 - [x] CharacterCard
 - [x] Pagination
 - [x] Character details page
-- [ ] Episodes page
+- [x] Episodes page
 - [ ] Locations page
 - [ ] Favorites
 - [ ] Responsive design
