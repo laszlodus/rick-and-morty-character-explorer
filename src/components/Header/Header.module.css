@@ -1,15 +1,24 @@
 .header {
-  background-color: var(--primary-bg);
+  background-color: var(--primary-background-color);
   min-height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--text-color);
+  justify-content: space-between;
+  color: var(--text-on-primary);
 }
 
 .header h1 {
-  margin: 0;
+  margin-left: 2rem;
   font-size: clamp(1.3rem, 6vw, 2rem);
   line-height: 1.2;
   text-align: center;
+}
+
+.header h1 a {
+  color: var(--text-on-primary);
+  text-decoration: none;
+}
+
+.header h1 a:hover {
+  opacity: 0.9;
 }

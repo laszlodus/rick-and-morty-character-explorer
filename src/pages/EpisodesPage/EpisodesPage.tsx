@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import styles from "./EpisodesPage.module.css";
+import styles from "./Episodes.module.css";
 import type { EpisodeResponse } from "../../types/EpisodeResponse";
 import { getEpisodes } from "../../services/EpisodesApi";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -43,7 +43,14 @@ export default function EpisodesPage() {
       {data && !isLoading && !error && (
         <>
           <div className={styles.episodesContainer}>
-            {/* Render episodes here */}
+            {data.results.map((episode) => (
+              <div className={styles.episodeCard} key={episode.id}>
+                <h2>{episode.name}</h2>
+                <p>Episode: {episode.episode}</p>
+                <p>Air date: {episode.air_date}</p>
+                <p>Characters: {episode.characters.length}</p>
+              </div>
+            ))}
           </div>
           <Pagination
             currentPage={validatedPage}

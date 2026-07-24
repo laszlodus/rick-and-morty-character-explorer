@@ -1,0 +1,33 @@
+.episodesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  justify-items: center;
+  gap: 1rem;
+}
+
+.episodeCard {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 18.75rem;
+  transition: transform 0.2s;
+  text-align: justify;
+  background-color: #f9f9f9;
+}
+
+.episodeCard:hover {
+  transform: scale(1.05);
+}
+
+.episodeCard h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.episodeCard p {
+  margin: 0.25rem 0;
+}

@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  margin-right: 2rem;
+}
+
+.navigation a {
+  color: var(--text-on-primary);
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+.navigation .active {
+  font-weight: bold;
+}

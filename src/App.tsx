@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 import CharacterDetails from "./pages/CharacterDetails/CharacterDetailsPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EpisodesPage from "./pages/EpisodesPage/EpisodesPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/characters/:id" element={<CharacterDetails />} />
+            <Route path="/episodes" element={<EpisodesPage />} />
           </Routes>
         </main>
         <Footer />
